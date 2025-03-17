@@ -56,7 +56,7 @@ export const Header = () => {
       </div>
 
       {/* Navbar */}
-      <nav className="bg-white shadow-md  md:max-lg:py-1 relative md:sticky top-0 z-50">
+      <nav className="bg-white shadow-md py-4 px-4 sm:px-0 md:max-lg:py-1 relative md:sticky top-0 z-50">
         <div className=" mx-auto flex flex-wrap justify-between items-center ">
           {/* Logo */}
           <div className="text-xl md:text-2xl font-bold text-gray-800 flex items-center  px-4 md:px-8 space-x-2">
