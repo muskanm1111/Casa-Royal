@@ -30,11 +30,11 @@ export const Header = () => {
   return (
     <>
       {/* Top Bar */}
-      <div className="bg-[#2A41E8] text-white text-sm md:text-lg font-semibold py-2 hidden md:flex ">
-        <div className="container mx-auto flex flex-wrap justify-between items-center px-4 md:px-8">
+      <div className="bg-[#2A41E8] text-white text-sm md:text-lg font-semibold py-2 hidden md:flex md:max-lg:hidden ">
+        <div className="container mx-auto flex flex-wrap justify-between  items-center px-4 md:px-2">
           {/* Left Section */}
-          <div className="flex flex-wrap items-center space-x-2 md:space-x-4  text-xs md:text-lg">
-            <span>📍 1441 Market St, San Francisco</span>
+          <div className="flex flex-wrap items-center space-x-2 md:space-x-2   text-xs md:text-lg">
+            <span className=" ">📍 1441 Market St, San Francisco</span>
             <span>📞 (123) 456-7890</span>
             <span>⏰ Mon - Sun: 8:00am - 6:00pm</span>
           </div>
@@ -54,9 +54,9 @@ export const Header = () => {
           </div>
         </div>
       </div>
-
+  
       {/* Navbar */}
-      <nav className="bg-white shadow-md py-4 relative md:sticky top-0 z-50">
+      <nav className="bg-white shadow-md  md:max-lg:py-1 relative md:sticky top-0 z-50">
         <div className=" mx-auto flex flex-wrap justify-between items-center px-4 md:px-8">
           {/* Logo */}
           <div className="text-xl md:text-2xl font-bold text-gray-800 flex items-center space-x-2">
@@ -64,7 +64,7 @@ export const Header = () => {
           </div>
 
           {/* Navigation Items */}
-          <ul className="hidden md:flex space-x-6 text-[20px] text-gray-700 font-semibold">
+          <ul className="hidden md:flex md:max-lg:hidden space-x-6 text-[20px] text-gray-700 font-semibold">
             {navItems.map((item, index) => (
               <Link
                 href={item.link}
@@ -75,17 +75,23 @@ export const Header = () => {
               </Link>
             ))}
           </ul>
-
-          {/* Submit Listing Button */}
-          <button className="bg-orange-500 text-white px-8 md:px-8 py-6   md:hidden lg:flex ">
-            Submit Listing
-          </button>
           <button
-            className="border border-gray-300 p-2 md:hidden text-black text-2xl rounded"
+            className="border border-gray-300 p-2    md:hidden md:max-lg:flex text-black text-2xl rounded"
             onClick={toggleMenu}
           >
             {show ? <IoClose /> : <GiHamburgerMenu />}
           </button>
+
+          {/* Submit Listing Button */}
+          <button className="bg-orange-500 text-white px-8 md:px-8 py-6 max-sm:hidden   max-md:hidden lg:flex ">
+            Submit Listing
+          </button>
+          {/* <button
+            className="border border-gray-300 p-2 md:hidden text-black text-2xl rounded"
+            onClick={toggleMenu}
+          >
+            {show ? <IoClose /> : <GiHamburgerMenu />}
+          </button> */}
         </div>
 
         {/* white section */}
@@ -104,11 +110,15 @@ export const Header = () => {
         </div> */}
         {show && (
           <div className="absolute -bottom-36 w-full left-0  bg-white  text-black z-10">
-            <ul className="flex flex-col md:hidden space-x-6  font-semibold">
+            <ul className="flex flex-col md:hidden md:max-lg:flex space-x-6  font-semibold">
               {navItems.map((item, index) => (
-                <li key={index} className="hover:text-blue-600 cursor-pointer">
-                  {item}
-                </li>
+                <Link
+                  href={item.link}
+                  key={index}
+                  className="hover:text-blue-600 cursor-pointer"
+                >
+                  {item.name}
+                </Link>
               ))}
             </ul>
           </div>
