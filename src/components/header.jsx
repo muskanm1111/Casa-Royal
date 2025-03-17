@@ -6,6 +6,15 @@ import Image from "next/image";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Link from "next/link";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
 
 
 const navItems = [
@@ -19,9 +28,6 @@ export const Header = () => {
     const [show, setShow] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
 
-    const toggleMenu = ()=> {
-        setShow(!show)
-    }
 
     const toggleSearch = ()=> {
         setShowSearch(!showSearch)
@@ -56,7 +62,7 @@ export const Header = () => {
       </div>
 
       {/* Navbar */}
-      <nav className="bg-white shadow-md py-4 px-4 sm:px-0 md:max-lg:py-1 relative md:sticky top-0 z-50">
+      <nav className="bg-white shadow-md py-4 px-4 md:px-0 md:py-0 md:max-lg:py-1 relative md:sticky top-0 z-50">
         <div className=" mx-auto flex flex-wrap justify-between items-center ">
           {/* Logo */}
           <div className="text-xl md:text-2xl font-bold text-gray-800 flex items-center  px-4 md:px-8 space-x-2">
@@ -75,54 +81,49 @@ export const Header = () => {
               </Link>
             ))}
           </ul>
-          <button
-            className="border border-gray-300 p-2    md:hidden md:max-lg:flex text-black text-2xl rounded"
-            onClick={toggleMenu}
-          >
-            {show ? <IoClose /> : <GiHamburgerMenu />}
-          </button>
+
+          <Sheet>
+            <SheetTrigger className=" md:hidden md:max-lg:flex">
+              <div className=" border p-2    md:hidden md:max-lg:flex text-black text-2xl rounded">
+                {show ? <IoClose /> : <GiHamburgerMenu />}
+              </div>
+            </SheetTrigger>
+            <SheetContent
+              className="bg-black/70 border-none text-white"
+              side="left"
+            >
+              <SheetHeader className="border-b-2 ">
+                <Image
+                  src="/logo-light.png"
+                  width={200}
+                  height={200}
+                  alt="logo"
+                  className=" mb-4 p-2  pl-5 "
+                />
+              </SheetHeader>
+
+              <div className=" mt-4">
+                <ul className="flex flex-col md:hidden md:max-lg:flex space-y-6 pl-5  font-semibold items-start">
+                  {navItems.map((item, index) => (
+                    <Link
+                      href={item.link}
+                      key={index}
+                      className="hover:text-blue-600 cursor-pointer text-xl"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </ul>
+              </div>
+            </SheetContent>
+          </Sheet>
 
           {/* Submit Listing Button */}
           <button className="bg-orange-500 text-white px-8 md:px-8 py-6 max-sm:hidden   max-md:hidden lg:flex ">
             Submit Listing
           </button>
-          {/* <button
-            className="border border-gray-300 p-2 md:hidden text-black text-2xl rounded"
-            onClick={toggleMenu}
-          >
-            {show ? <IoClose /> : <GiHamburgerMenu />}
-          </button> */}
         </div>
 
-        {/* white section */}
-        {/* <div className=" mx-auto   px-4 md:px-8">
-          <div className="flex justify-between items-center py-2">
-            <div className="flex items-center"></div>
-            <div className=" md:hidden 2xl:flex items-center">
-              <span className="flex items-center space-x-6 py-4   text-black">
-                <span>COMPARE</span>
-                <span className="text-3xl">
-                  <SiTicktick />
-                </span>
-              </span>
-            </div>
-          </div>
-        </div> */}
-        {show && (
-          <div className="absolute -bottom-36 w-full left-0  bg-white  text-black z-10">
-            <ul className="flex flex-col md:hidden md:max-lg:flex space-x-6  font-semibold">
-              {navItems.map((item, index) => (
-                <Link
-                  href={item.link}
-                  key={index}
-                  className="hover:text-blue-600 cursor-pointer"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </ul>
-          </div>
-        )}
         {showSearch && (
           <div className="absolute -bottom-36 w-full left-0  bg-white  text-black">
             <div className="flex items-center justify-between">

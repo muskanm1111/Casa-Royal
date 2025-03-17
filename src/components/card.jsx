@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import { MapPin, Clock, Home, Bed, Bath, Zap } from "lucide-react";
 import { properties } from "../../data/data";
@@ -29,7 +31,7 @@ export default function Card({home}) {
       {/* Property Grid */}
       <div
         className={`grid grid-cols-1  gap-8 ${
-          home !== true ? "md:grid-cols-3" : "md:grid-cols-2"
+          home !== true ? "lg:grid-cols-3 sm:grid-cols-2"  : "md:grid-cols-2"
         }`}
       >
         {propertiesData.map((property) => (
