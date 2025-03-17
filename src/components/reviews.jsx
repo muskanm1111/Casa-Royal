@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 // Dummy reviews data
 const reviews = [
@@ -70,7 +71,7 @@ const Reviews = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              className="text-start mr-96"
+              className="text-start md:mr-96"
             >
               <p className="text-lg md:text-xl mb-12 leading-relaxed">
                 {reviews[currentIndex].review}
@@ -78,7 +79,9 @@ const Reviews = () => {
 
               <div className="flex items-start justify-start">
                 <div className="mr-4">
-                  <img
+                  <Image
+                  width={500}
+                  height={500}
                     src={reviews[currentIndex].image}
                     alt={reviews[currentIndex].name}
                     className="w-16 h-16 rounded-full object-cover"
